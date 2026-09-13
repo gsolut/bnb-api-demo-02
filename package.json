@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"pnpm --prefix backend run dev\" \"pnpm --prefix frontend run dev\"",
-    "dev:backend": "pnpm --prefix backend run dev",
-    "dev:frontend": "pnpm --prefix frontend run dev",
-    "build": "pnpm --prefix backend run build && pnpm --prefix frontend run build",
-    "lint": "pnpm --prefix backend run lint && pnpm --prefix frontend run lint"
+    "dev": "concurrently \"pnpm --filter bnb-backend dev\" \"pnpm --filter bnb-frontend dev\"",
+    "dev:backend": "pnpm --filter bnb-backend dev",
+    "dev:frontend": "pnpm --filter bnb-frontend dev",
+    "build": "pnpm --filter bnb-backend build && pnpm --filter bnb-frontend build",
+    "lint": "pnpm --filter bnb-backend lint && pnpm --filter bnb-frontend lint"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

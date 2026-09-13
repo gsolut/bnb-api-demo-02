@@ -8,9 +8,11 @@ From the repository root:
 
 ```bash
 pnpm dev:frontend
-pnpm --prefix frontend run build
-pnpm --prefix frontend run lint
+pnpm --filter bnb-frontend build
+pnpm --filter bnb-frontend lint
 ```
+
+The repository is a pnpm workspace. Run these commands from the root; the `bnb-frontend` filter targets the package in `frontend/`.
 
 Vite serves the development app at `http://localhost:3000`. In development, the Vite configuration proxies `/api` and `/ws` to the backend. In the container deployment, Nginx provides the same proxy paths.
 

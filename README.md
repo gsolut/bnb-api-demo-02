@@ -37,14 +37,11 @@ Plataforma full-stack de alto rendimiento para el consumo de datos de mercado en
 
 1. **Instalar dependencias:**
    ```bash
-   # Backend
-   cd backend
-   pnpm install
-
-   # Frontend
-   cd ../frontend
+  # En la raíz del repositorio
    pnpm install
    ```
+
+  pnpm instala las dependencias de `backend` y `frontend` desde el workspace raíz.
 
 2. **Iniciar Backend y Frontend en paralelo:**
    ```bash

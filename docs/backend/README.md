@@ -8,9 +8,11 @@ From the repository root:
 
 ```bash
 pnpm dev:backend
-pnpm --prefix backend run build
-pnpm --prefix backend run lint
+pnpm --filter bnb-backend build
+pnpm --filter bnb-backend lint
 ```
+
+The repository is a pnpm workspace. Run these commands from the root; the `bnb-backend` filter targets the package in `backend/`.
 
 The default HTTP port is `4000`. The process reads `PORT`, `BINANCE_REST_URL`, and `BINANCE_WS_URL` from the environment through `src/config/constants.ts`.
 
