@@ -1,0 +1,15 @@
+{
+  "name": "bnb-api-demo-02-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"pnpm --prefix backend run dev\" \"pnpm --prefix frontend run dev\"",
+    "dev:backend": "pnpm --prefix backend run dev",
+    "dev:frontend": "pnpm --prefix frontend run dev",
+    "build": "pnpm --prefix backend run build && pnpm --prefix frontend run build",
+    "lint": "pnpm --prefix backend run lint && pnpm --prefix frontend run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
