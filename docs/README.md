@@ -20,7 +20,8 @@ This directory contains the project documentation. The folders are grouped by do
 ## Documentation rules
 
 - Put architecture and runtime behavior in `architecture/`.
-- Put service-specific behavior in `backend/` or `frontend/`.
+- Put service-specific behavior in `backend/` or `frontend/`; application source lives in `apps/`.
+- Put reusable workspace packages in `packages/` only when at least two applications share the code.
 - Put one accepted, rejected, or superseded technical decision in each file under `adrs/`.
 - Link to source files when a detail is controlled by code.
 - State limits and assumptions instead of describing unverified future behavior.

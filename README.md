@@ -41,7 +41,7 @@ Plataforma full-stack de alto rendimiento para el consumo de datos de mercado en
    pnpm install
    ```
 
-  pnpm instala las dependencias de `backend` y `frontend` desde el workspace raíz.
+  pnpm instala las dependencias de `apps/backend` y `apps/frontend` desde el workspace raíz.
 
 2. **Iniciar Backend y Frontend en paralelo:**
    ```bash

@@ -5,7 +5,7 @@
 
 ## Context
 
-The client must present live market data, interactive candlestick charts, technical indicators, recent trades, and symbol or interval controls. The current frontend is a browser application in `frontend/` and needs a fast development server and a production bundle that Nginx can serve.
+The client must present live market data, interactive candlestick charts, technical indicators, recent trades, and symbol or interval controls. The current frontend is a browser application in `apps/frontend/` and needs a fast development server and a production bundle that Nginx can serve.
 
 ## Decision Drivers
 
@@ -43,7 +43,7 @@ Use React 18 with TypeScript and Vite. Use Tailwind CSS for layout styling, `lig
 
 ## Confirmation
 
-The decision is implemented by `frontend/package.json`, `frontend/vite.config.ts`, and the source modules under `frontend/src/`. Verify it with `pnpm --filter bnb-frontend lint` and `pnpm --filter bnb-frontend build`.
+The decision is implemented by `apps/frontend/package.json`, `apps/frontend/vite.config.ts`, and the source modules under `apps/frontend/src/`. Verify it with `pnpm --filter bnb-frontend lint` and `pnpm --filter bnb-frontend build`.
 
 ## References
 

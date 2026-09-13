@@ -43,7 +43,7 @@ Use Node.js with TypeScript. Use Express for HTTP routing and middleware, Axios 
 
 ## Confirmation
 
-The decision is implemented by `backend/package.json` and the modules under `backend/src/`. Verify it with `pnpm --filter bnb-backend lint` and `pnpm --filter bnb-backend build`.
+The decision is implemented by `apps/backend/package.json` and the modules under `apps/backend/src/`. Verify it with `pnpm --filter bnb-backend lint` and `pnpm --filter bnb-backend build`.
 
 ## References
 

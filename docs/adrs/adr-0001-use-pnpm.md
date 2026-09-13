@@ -5,7 +5,7 @@
 
 ## Context
 
-The repository contains a root package and separate `backend` and `frontend` packages. Developers and automation need one package manager for installing dependencies and running scripts across those packages. Separate lockfiles make dependency updates and reproducibility harder to manage.
+The repository contains a root package, deployable applications under `apps/`, and a reserved `packages/` area for shared libraries. Developers and automation need one package manager for installing dependencies and running scripts across those packages. Separate lockfiles make dependency updates and reproducibility harder to manage.
 
 ## Decision Drivers
 
@@ -30,15 +30,15 @@ Supports the existing pnpm workflow, shared lockfile, package filters, and root 
 
 ## Decision
 
-Use pnpm for local development, dependency installation, and CI or deployment scripts. Declare `backend` and `frontend` in `pnpm-workspace.yaml` and keep dependency resolution in the root `pnpm-lock.yaml`.
+Use pnpm for local development, dependency installation, and CI or deployment scripts. Declare `apps/*` and `packages/*` in `pnpm-workspace.yaml` and keep dependency resolution in the root `pnpm-lock.yaml`.
 
 ## Decision Outcome
 
-The repository uses pnpm workspaces. Root scripts target packages with `pnpm --filter`, while package manifests remain in their respective directories.
+The repository uses pnpm workspaces. Root scripts target applications with `pnpm --filter`, while package manifests remain in their respective directories.
 
 ## Consequences
 
-- Run `pnpm install` once from the repository root to install both workspace packages.
+- Run `pnpm install` once from the repository root to install all workspace packages.
 - Use root scripts such as `pnpm dev` and `pnpm build`, or target a package with `pnpm --filter bnb-backend ...` or `pnpm --filter bnb-frontend ...`.
 - CI and container build instructions must use pnpm rather than npm or yarn.
 - Contributors need pnpm installed before running the project commands.

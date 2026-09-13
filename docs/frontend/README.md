@@ -12,7 +12,7 @@ pnpm --filter bnb-frontend build
 pnpm --filter bnb-frontend lint
 ```
 
-The repository is a pnpm workspace. Run these commands from the root; the `bnb-frontend` filter targets the package in `frontend/`.
+The repository is a pnpm workspace. Run these commands from the root; the `bnb-frontend` filter targets the application in `apps/frontend/`.
 
 Vite serves the development app at `http://localhost:3000`. In development, the Vite configuration proxies `/api` and `/ws` to the backend. In the container deployment, Nginx provides the same proxy paths.
 
@@ -28,7 +28,7 @@ Vite serves the development app at `http://localhost:3000`. In development, the 
 
 ## Indicators and signals
 
-The indicator engine in `frontend/src/utils/indicators.ts` calculates:
+The indicator engine in `apps/frontend/src/utils/indicators.ts` calculates:
 
 - SMA for any requested period.
 - EMA for any requested period, seeded with an initial SMA.
@@ -39,8 +39,8 @@ Signal detection uses EMA 9/21 crosses and RSI threshold reversals. These are ch
 
 ## Main code paths
 
-- `frontend/src/App.tsx`: page state and data orchestration.
-- `frontend/src/services/api.ts`: REST requests to `/api/market`.
-- `frontend/src/hooks/useBinanceWs.ts`: WebSocket connection, subscription, and reconnect behavior.
-- `frontend/src/components/TradingChart.tsx`: Lightweight Charts rendering.
-- `frontend/src/utils/indicators.ts`: indicator and signal calculations.
+- `apps/frontend/src/App.tsx`: page state and data orchestration.
+- `apps/frontend/src/services/api.ts`: REST requests to `/api/market`.
+- `apps/frontend/src/hooks/useBinanceWs.ts`: WebSocket connection, subscription, and reconnect behavior.
+- `apps/frontend/src/components/TradingChart.tsx`: Lightweight Charts rendering.
+- `apps/frontend/src/utils/indicators.ts`: indicator and signal calculations.

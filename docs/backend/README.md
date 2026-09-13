@@ -12,7 +12,7 @@ pnpm --filter bnb-backend build
 pnpm --filter bnb-backend lint
 ```
 
-The repository is a pnpm workspace. Run these commands from the root; the `bnb-backend` filter targets the package in `backend/`.
+The repository is a pnpm workspace. Run these commands from the root; the `bnb-backend` filter targets the application in `apps/backend/`.
 
 The default HTTP port is `4000`. The process reads `PORT`, `BINANCE_REST_URL`, and `BINANCE_WS_URL` from the environment through `src/config/constants.ts`.
 
@@ -52,7 +52,7 @@ The Binance manager reference-counts identical subscriptions and reconnects with
 
 ## Main code paths
 
-- `backend/src/routes/marketRoutes.ts`: REST handlers.
-- `backend/src/services/binanceRest.ts`: Binance REST client and response normalization.
-- `backend/src/services/binanceWs.ts`: Binance stream lifecycle and reference counting.
-- `backend/src/ws/socketServer.ts`: local client connections, subscriptions, and broadcasts.
+- `apps/backend/src/routes/marketRoutes.ts`: REST handlers.
+- `apps/backend/src/services/binanceRest.ts`: Binance REST client and response normalization.
+- `apps/backend/src/services/binanceWs.ts`: Binance stream lifecycle and reference counting.
+- `apps/backend/src/ws/socketServer.ts`: local client connections, subscriptions, and broadcasts.
