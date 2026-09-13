@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: bnb-backend-proxy
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - BINANCE_REST_URL=https://api.binance.com/api/v3
+      - BINANCE_WS_URL=wss://stream.binance.com:9443/ws
+    networks:
+      - bnb-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bnb-frontend-client
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - bnb-network
+
+networks:
+  bnb-network:
+    driver: bridge
