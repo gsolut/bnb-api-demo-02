@@ -72,3 +72,7 @@ docker compose up --build
 - `GET /api/market/stats?symbol=ETHUSDT` - Estadísticas de 24 horas.
 - `GET /api/market/health` - Estado de salud y conectividad con Binance.
 - `WS /ws` - Gateway WebSocket local para suscripciones `{ "action": "SUBSCRIBE", "symbol": "ETHUSDT", "interval": "1m" }`.
+
+## Documentación técnica
+
+Consulta el [índice de documentación](docs/README.md) para la arquitectura, el frontend, el backend y las decisiones registradas.
