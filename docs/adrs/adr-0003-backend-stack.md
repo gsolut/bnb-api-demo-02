@@ -17,7 +17,7 @@ The backend must expose HTTP market-data endpoints, maintain outbound Binance RE
 
 ## Considered Options
 
-### Node.js with Express and ws
+### Node.js with Express, ws, and the Binance Spot connector
 
 Matches the existing service, provides the required HTTP and WebSocket primitives, and keeps REST and streaming integrations in one TypeScript process.
 

@@ -14,7 +14,7 @@ pnpm --filter bnb-backend lint
 
 The repository is a pnpm workspace. Run these commands from the root; the `bnb-backend` filter targets the application in `apps/backend/`.
 
-The default HTTP port is `4000`. The process reads `PORT`, `BINANCE_REST_URL`, `BINANCE_WS_API_URL`, and `BINANCE_WS_STREAMS_URL` from the environment through `src/config/constants.ts`. `BINANCE_WS_URL` remains a backward-compatible alias for the Streams URL. Optional `BINANCE_API_KEY` and `BINANCE_API_SECRET` values configure the connector; public market endpoints work with empty credentials.
+The default HTTP port is `4000`. The process reads `PORT`, `BINANCE_REST_URL`, `BINANCE_WS_API_URL`, and `BINANCE_WS_STREAMS_URL` from the environment through `apps/backend/src/config/constants.ts`. `BINANCE_WS_URL` remains a backward-compatible alias for the Streams URL. Optional `BINANCE_API_KEY` and `BINANCE_API_SECRET` values configure the connector; public market endpoints work with empty credentials.
 
 ## REST API
 

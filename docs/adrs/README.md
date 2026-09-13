@@ -8,4 +8,4 @@ ADRs record decisions that affect the structure, tooling, or operation of the pr
 | --- | --- | --- |
 | [ADR 0001: Use pnpm workspaces](adr-0001-use-pnpm.md) | Accepted | Use pnpm and one workspace lockfile for the repository packages. |
 | [ADR 0002: Frontend stack](adr-0002-frontend-stack.md) | Accepted | Use React, TypeScript, Vite, Tailwind CSS, and Lightweight Charts for the client. |
-| [ADR 0003: Backend stack](adr-0003-backend-stack.md) | Accepted | Use Node.js, TypeScript, Express, Axios, and `ws` for the gateway. |
+| [ADR 0003: Backend stack](adr-0003-backend-stack.md) | Accepted | Use Node.js, TypeScript, Express, `ws`, and the official Binance Spot connector. |

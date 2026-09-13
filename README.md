@@ -8,9 +8,9 @@ Plataforma full-stack de alto rendimiento para el consumo de datos de mercado en
 
 - **Foco en ETH/USDT y Pares Principales:** Soporte nativo y rápido para `ETHUSDT`, `BTCUSDT`, `SOLUSDT`, `BNBUSDT`, `ADAUSDT` y `XRPUSDT`.
 - **Motor de Gráficos de Alto Rendimiento:** Integración de `@tradingview/lightweight-charts` con renderizado en Canvas a 60 FPS.
-- **Arquitectura Híbrida (REST + WebSocket):**
-  - **REST:** Carga inicial instantánea de las últimas 500 velas históricas.
-  - **WebSockets:** Actualizaciones en vivo de velas en formación (sub-segundo) y flujo ininterrumpido de trades ejecutados con flashes visuales.
+- **Arquitectura Híbrida (REST + WebSocket Streams):**
+  - **REST:** Carga inicial de las últimas 500 velas históricas y estadísticas de 24 horas.
+  - **WebSocket Streams:** Actualizaciones en vivo de velas en formación y flujo de trades mediante una conexión combinada multiplexada.
 - **Herramientas de Visualización de Operaciones Conocidas:**
   - **Cruces de Medias Móviles (SMA 20/50/200 & EMA 9/21):** Detección automática de *Golden Cross* (señales de compra) y *Death Cross* (señales de venta).
   - **Oscilador RSI (14):** Identificación de zonas extremas de sobrecompra (>70) y sobreventa (<30).
@@ -26,7 +26,7 @@ Plataforma full-stack de alto rendimiento para el consumo de datos de mercado en
 | Capa | Tecnologías |
 |---|---|
 | **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, TradingView Lightweight Charts, Lucide Icons |
-| **Backend Proxy** | Node.js, Express, `ws` (WebSocket Gateway), Axios, TypeScript |
+| **Backend Proxy** | Node.js, Express, `ws` (gateway local), `@binance/spot` (REST, WebSocket API y Streams), TypeScript |
 | **Infraestructura** | Docker (Multi-stage), Docker Compose v2, Nginx |
 
 ---
