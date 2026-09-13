@@ -1,6 +1,9 @@
+import { SPOT_REST_API_PROD_URL, SPOT_WS_API_PROD_URL, SPOT_WS_STREAMS_PROD_URL } from '@binance/spot';
+
 export const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 4000;
-export const BINANCE_REST_BASE_URL = process.env.BINANCE_REST_URL || 'https://api.binance.com/api/v3';
-export const BINANCE_WS_BASE_URL = process.env.BINANCE_WS_URL || 'wss://stream.binance.com:9443/ws';
+export const BINANCE_REST_BASE_URL = process.env.BINANCE_REST_URL || SPOT_REST_API_PROD_URL;
+export const BINANCE_WS_API_URL = process.env.BINANCE_WS_API_URL || SPOT_WS_API_PROD_URL;
+export const BINANCE_WS_STREAMS_URL = process.env.BINANCE_WS_STREAMS_URL || process.env.BINANCE_WS_URL || SPOT_WS_STREAMS_PROD_URL;
 
 export const SUPPORTED_SYMBOLS = [
   { symbol: 'ETHUSDT', name: 'Ethereum / Tether', baseAsset: 'ETH', quoteAsset: 'USDT' },

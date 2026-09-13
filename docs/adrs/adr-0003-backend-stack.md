@@ -1,4 +1,4 @@
-# ADR 0003: Use Node.js, TypeScript, Express, Axios, and ws for the backend
+# ADR 0003: Use Node.js, TypeScript, Express, and the Binance Spot connector for the backend
 
 - Status: Accepted
 - Date: 2026-09-13
@@ -31,11 +31,14 @@ Could offload connection management, but would add external infrastructure and c
 
 ## Decision Outcome
 
-Use Node.js with TypeScript. Use Express for HTTP routing and middleware, Axios for Binance REST requests, and `ws` for Binance and client WebSocket connections. Keep outbound integrations in `src/services/`, HTTP routes in `src/routes/`, and the browser gateway in `src/ws/`.
+Use Node.js with TypeScript. Configure one official `@binance/spot` connector with its `restAPI`, `websocketAPI`, and `websocketStreams` services. Use REST for the current snapshot endpoints, keep the normal WebSocket API available for explicitly required request/response operations, and use WebSocket Streams for continuous market events. Use Express for HTTP routing and middleware, and `ws` for the local browser gateway. Keep outbound integrations in `src/services/`, HTTP routes in `src/routes/`, and the browser gateway in `src/ws/`.
 
 ## Consequences
 
 - The backend can normalize Binance responses before exposing them to the frontend.
+- REST and the normal WebSocket API may overlap in capability; the application selects one per use case instead of implementing duplicate operations.
+- The official connector owns Binance endpoint paths, request handling, and upstream stream lifecycle primitives.
+- `BINANCE_WS_API_URL` identifies the normal WebSocket API; `BINANCE_WS_STREAMS_URL` identifies realtime market streams.
 - The service owns reconnect, reference counting, heartbeat, and client cleanup behavior.
 - The gateway is stateless across process restarts; active subscriptions must be rebuilt by clients.
 - The current public market-data integration does not require a database or Binance credentials.
@@ -49,4 +52,9 @@ The decision is implemented by `apps/backend/package.json` and the modules under
 
 - [Node.js documentation](https://nodejs.org/docs/latest/api/)
 - [Express documentation](https://expressjs.com/)
+- [Binance Spot REST API](https://developers.binance.com/en/docs/products/spot/rest-api)
+- [Binance Spot WebSocket API](https://developers.binance.com/en/docs/products/spot/web-socket-api)
+- [Binance Spot WebSocket Streams](https://developers.binance.com/en/docs/catalog/core-trading-spot-trading/api/ws-streams/~?lang=ts)
+- [Binance API catalog](https://developers.binance.com/en/docs/catalog)
+- [Binance JavaScript connector documentation](https://developers.binance.com/en/docs/sdks-tools/connectors/javascript)
 - [ws documentation](https://github.com/websockets/ws)

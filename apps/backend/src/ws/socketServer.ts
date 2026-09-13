@@ -1,6 +1,6 @@
 import { WebSocketServer, WebSocket, RawData } from 'ws';
 import { Server as HttpServer } from 'http';
-import { binanceWsManager } from '../services/binanceWs.js';
+import { binanceStreamsManager } from '../services/binanceStreams.js';
 import { ClientWsMessage, ServerWsPayload, KlineBar } from '../types/binance.js';
 
 interface ClientState {
@@ -68,11 +68,11 @@ export class ClientSocketServer {
     });
 
     // Listen to Binance WS manager broadcasts
-    binanceWsManager.onKline((symbol, interval, bar: KlineBar) => {
+    binanceStreamsManager.onKline((symbol, interval, bar: KlineBar) => {
       this.broadcastKline(symbol, interval, bar);
     });
 
-    binanceWsManager.onTrade((symbol, trade) => {
+    binanceStreamsManager.onTrade((symbol, trade) => {
       this.broadcastTrade(symbol, trade);
     });
 
@@ -112,19 +112,19 @@ export class ClientSocketServer {
         if (sub.startsWith('kline:')) {
           const [, sAndI] = sub.split(':');
           const [oldSym, oldInt] = sAndI.split('@');
-          binanceWsManager.unsubscribeKline(oldSym, oldInt);
+          binanceStreamsManager.unsubscribeKline(oldSym, oldInt);
           client.subscriptions.delete(sub);
         }
         if (sub.startsWith('trade:')) {
           const [, oldSym] = sub.split(':');
-          binanceWsManager.unsubscribeTrade(oldSym);
+          binanceStreamsManager.unsubscribeTrade(oldSym);
           client.subscriptions.delete(sub);
         }
       }
 
       // Subscribe to new
-      binanceWsManager.subscribeKline(symbol, interval);
-      binanceWsManager.subscribeTrade(symbol);
+      binanceStreamsManager.subscribeKline(symbol, interval);
+      binanceStreamsManager.subscribeTrade(symbol);
       client.subscriptions.add(klineKey);
       client.subscriptions.add(tradeKey);
 
@@ -136,11 +136,11 @@ export class ClientSocketServer {
       });
     } else if (msg.action === 'UNSUBSCRIBE') {
       if (client.subscriptions.has(klineKey)) {
-        binanceWsManager.unsubscribeKline(symbol, interval);
+        binanceStreamsManager.unsubscribeKline(symbol, interval);
         client.subscriptions.delete(klineKey);
       }
       if (client.subscriptions.has(tradeKey)) {
-        binanceWsManager.unsubscribeTrade(symbol);
+        binanceStreamsManager.unsubscribeTrade(symbol);
         client.subscriptions.delete(tradeKey);
       }
     }
@@ -151,10 +151,10 @@ export class ClientSocketServer {
       if (sub.startsWith('kline:')) {
         const [, sAndI] = sub.split(':');
         const [sym, int] = sAndI.split('@');
-        binanceWsManager.unsubscribeKline(sym, int);
+        binanceStreamsManager.unsubscribeKline(sym, int);
       } else if (sub.startsWith('trade:')) {
         const [, sym] = sub.split(':');
-        binanceWsManager.unsubscribeTrade(sym);
+        binanceStreamsManager.unsubscribeTrade(sym);
       }
     }
     client.subscriptions.clear();
